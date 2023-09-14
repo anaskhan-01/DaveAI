@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box } from "@mui/material";
+import "./App.css";
+import Card from "./components/Card";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import CardUI from "./components/Card";
+import SupplierList from "./SuplierList";
+
+const customHeader = {
+  "Content-Type": "application/json",
+  "X-I2CE-ENTERPRISE-ID": "dave_vs_covid",
+  "X-I2CE-USER-ID": "ananth+covid@i2ce.in",
+  "X-I2CE-API-KEY": "0349234-38472-1209-2837-3432434",
+};
+
+const BASE_URL = "https://staging.iamdave.ai";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
+  console.log(data);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const apiData = await axios({
+          url: `${BASE_URL}/list/supply?_page_number=1`,
+          method: "get",
+          headers: customHeader,
+        });
+        setData(apiData.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box
+      sx={{
+        width: "1440px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <SupplierList />
+    </Box>
+  );
 }
 
-export default App
+export default App;
