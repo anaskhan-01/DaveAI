@@ -1,8 +1,16 @@
-# React + Vite
+# DAVE AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+COVID-19 API shows Card details of the medicines supplied to the user from different states.
 
-Currently, two official plugins are available:
+I also implemented categorization and sorting based on different fields.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tech Stack:
+
+1. Vite+React
+2. Material UI
+3. Axios
+
+How to install:
+
+1. npm install
+2. npm run dev
